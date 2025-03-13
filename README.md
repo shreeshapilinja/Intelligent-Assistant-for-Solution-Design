@@ -13,9 +13,34 @@ The expected result is a user-friendly UI interface where users can upload a vid
 - Propose a technology stack tailored to the identified problems and solutions.
 - Provide a professional report in Markdown and PDF formats for easy sharing and review.
 
-## System Architecture
+## Team Contributions and Milestones
+| **Team Member**       | **Contribution**                              | **Milestone Achieved**                  |
+|-----------------------|-----------------------------------------------|-----------------------------------------|
+| <span style="color:#1E90FF">Shreesha B</span>   | - Research and Technology Selection<br>- Local LLM experiments<br>- Chunk Handling<br>- Prompt Engineering<br>- Recording Meetings<br>- Structured report generation<br>- Testing and debugging | - Completed Research and Technology Selection (Day 2)<br>- Selected best LLM model (Day 7)<br>- Generated structured reports (Day 9)<br>- System tested and debugged (Day 11) |
+| <span style="color:#FF4500">Ojas Soni</span>   | - Research and Technology Selection<br>- Implementing File Upload and Speech-to-Text Conversion<br>- Designing Scripts<br>- Recording Meetings<br>- Prompt Engineering<br>- Testing and debugging | - Completed Research and Technology Selection (Day 2)<br>- Implemented Speech-to-Text feature (Day 5)<br>- System tested and debugged (Day 11) |
+| <span style="color:#32CD32">Sree Nidhi L</span> | - Research and Technology Selection<br>- Architecture Design<br>- Recording Meetings<br>- Frontend Designing<br>- Prompt Engineering<br>- Documentation<br>- System Integration | - Completed Research and Technology Selection (Day 2)<br>- Designed architecture (Day 3)<br>- Completed frontend design (Day 10)<br>- Integrated entire system (Day 11) |
+
+## 🎨 Color Legend
+- **<span style="color:#1E90FF">Shreesha B</span>**: Lead AI Engineer
+- **<span style="color:#FF4500">Ojas Soni</span>**: Lead Software Developer
+- **<span style="color:#32CD32">Sree Nidhi L</span>**: Lead Architect and Documentarian
+
+## 🎉 Key Milestones Overview
+- **Day 2**: Research and tech selection completed (All team members).
+- **Day 3**: Architecture design finalized (Sree Nidhi L).
+- **Day 5**: Speech-to-Text conversion implemented (Ojas Soni).
+- **Day 7**: Best LLM model selected (Shreesha B).
+- **Day 9**: Structured reports generated (Shreesha B).
+- **Day 11**: System fully integrated and tested (All team members).
+
+## Project Timeline
+![Gantt Chart](./timeline_milastone.png)
+*Figure: Project timeline spanning 11 days.*
+
+## System Architecture 
 
 ![architecture diagram](./architecture_diagram.png)
+*Figure: Workflow for text extraction and report generation.*
 
 The architecture diagram illustrates the end-to-end workflow of the Intelligent Assistant for Solution Design. Below is a detailed breakdown of the components and flow:
 
@@ -52,6 +77,7 @@ The architecture diagram illustrates the end-to-end workflow of the Intelligent 
 The choice of Whisper `base.en` for transcription was informed by the analysis in the obtained graph. The graph compares various models (BASE.EN WHISPER, WAV2VEC2, LARGE-V3-TURBO [WHISPER], VOSK-MODEL-EN-US-0.22-LGRAPH, VOSK-MODEL-EN-US-0.22) on Word Error Rate (WER) and Character Error Rate (CER). BASE.EN WHISPER achieved a WER of 34.06 and a CER of 15.24, which are competitive compared to larger models like LARGE-V3-TURBO (WER: 64.86, CER: 34.45) while requiring significantly fewer computational resources. Since the project prioritizes efficiency on varied hardware (including CPU setups), `base.en` provides a balanced trade-off between accuracy and resource usage, making it ideal for this application.
 
 ![model_selection_voice](./model_selection_voice.png)
+*Figure: Comparison of Word Error Rate (WER) and Character Error Rate (CER) for different models.*
 
 ### Why Choose Qwen2.5 for Language Processing?
 Qwen2.5, developed by Alibaba Cloud, was selected as the language model for this project due to its strong performance in natural language understanding and generation, particularly for structured tasks like information extraction and report generation. The 7B model (or 3B for CPU) offers a good balance of capability and efficiency, making it suitable for processing large meeting transcripts while maintaining high-quality output. Qwen2.5 excels in handling long contexts (up to 8192 tokens in this setup) and following complex prompts, which is critical for extracting nuanced information like problem statements and solution designs. Additionally, its open-source availability via Ollama ensures accessibility and ease of deployment, aligning with the project's goal of creating a scalable and maintainable solution.
