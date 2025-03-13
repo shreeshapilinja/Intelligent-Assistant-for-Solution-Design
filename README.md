@@ -20,7 +20,7 @@ The expected result is a user-friendly UI interface where users can upload a vid
 | <span style="color:#FF4500">Ojas Soni</span>   | - Research and Technology Selection<br>- Implementing File Upload and Speech-to-Text Conversion<br>- Designing Scripts<br>- Recording Meetings<br>- Prompt Engineering<br>- Testing and debugging | - Completed Research and Technology Selection (Day 2)<br>- Implemented Speech-to-Text feature (Day 5)<br>- System tested and debugged (Day 11) |
 | <span style="color:#32CD32">Sree Nidhi L</span> | - Research and Technology Selection<br>- Architecture Design<br>- Recording Meetings<br>- Frontend Designing<br>- Prompt Engineering<br>- Documentation<br>- System Integration | - Completed Research and Technology Selection (Day 2)<br>- Designed architecture (Day 3)<br>- Completed frontend design (Day 10)<br>- Integrated entire system (Day 11) |
 
-## 🎨 Color Legend
+## 🎨 Team Members Role
 - **<span style="color:#1E90FF">Shreesha B</span>**: Lead AI Engineer
 - **<span style="color:#FF4500">Ojas Soni</span>**: Lead Software Developer
 - **<span style="color:#32CD32">Sree Nidhi L</span>**: Lead Architect and Documentarian
