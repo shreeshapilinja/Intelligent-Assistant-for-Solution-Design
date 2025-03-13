@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>documentation.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="intelligent-assistant-for-solution-design-capstone-project-documentation">Intelligent Assistant for Solution Design: Capstone Project Documentation</h1>
+<h2 id="project-overview">Project Overview</h2>
+<h3 id="problem-statement">Problem Statement</h3>
+<p>In the business world, meetings are a cornerstone for discussing requirements, plans, and roadmaps. Post-meeting, there is often a need for internal discussions within organizations like TCS to process the outcomes effectively. Key tasks include identifying problem statements, designing solutions, recommending technology stacks, and summarizing key points and action items. The challenge lies in automating this process to reduce manual effort, improve accuracy, and ensure actionable insights are captured systematically.</p>
+<p>The expected result is a user-friendly UI interface where users can upload a video or transcript of a meeting. The solution should generate a detailed report, including a summary, identified problem statements, proposed solution designs, and recommended technology stacks.</p>
+<h3 id="objectives">Objectives</h3>
+<ul>
+<li>Develop an intelligent assistant capable of processing meeting audio, video, or text transcripts.</li>
+<li>Extract key insights such as summaries, problem statements, action items, and solutions.</li>
+<li>Propose a technology stack tailored to the identified problems and solutions.</li>
+<li>Provide a professional report in Markdown and PDF formats for easy sharing and review.</li>
+</ul>
+<h2 id="system-architecture">System Architecture</h2>
+<p><img src="./architecture_diagram.png" alt="architecture diagram"></p>
+<p>The architecture diagram illustrates the end-to-end workflow of the Intelligent Assistant for Solution Design. Below is a detailed breakdown of the components and flow:</p>
+<ol>
+<li>
+<p><strong>Input Layer</strong>:</p>
+<ul>
+<li><strong>Sources</strong>: The system accepts video (mp4, webm), audio (mp3), or text (txt) files as input.</li>
+<li><strong>User Interface</strong>: A Gradio-based UI allows users to upload files and initiate the processing pipeline.</li>
+</ul>
+</li>
+<li>
+<p><strong>Transcription Layer</strong>:</p>
+<ul>
+<li><strong>Whisper Model (Speech-to-Text)</strong>: The Whisper model (<code>base.en</code>) is used to transcribe audio or video files into text. If a text file is uploaded, it is directly processed.</li>
+<li><strong>Output</strong>: Extracted text from the input file.</li>
+</ul>
+</li>
+<li>
+<p><strong>Text Processing Layer</strong>:</p>
+<ul>
+<li><strong>Chunking</strong>: The transcript is divided into manageable chunks (4000 words with 1000-word overlap) to handle large inputs within the context limits of the language model.</li>
+<li><strong>Output</strong>: A list of transcript chunks.</li>
+</ul>
+</li>
+<li>
+<p><strong>Meeting Classification</strong>:</p>
+<ul>
+<li><strong>LLM (Qwen2.5)</strong>: The first chunk is analyzed using a classification prompt to determine if the meeting is technical or non-technical.</li>
+<li><strong>Output</strong>: Meeting type (&quot;Technical&quot; or &quot;Non-technical&quot;).</li>
+</ul>
+</li>
+<li>
+<p><strong>Information Extraction</strong>:</p>
+<ul>
+<li><strong>LLM (Qwen2.5)</strong>: Depending on the meeting type, appropriate prompts (technical or non-technical) are used to extract summaries, key points, action items, problem statements, solution components, technology suggestions, and challenges.</li>
+<li><strong>Output</strong>: Extracted information per chunk in a structured format.</li>
+</ul>
+</li>
+<li>
+<p><strong>Report Generation</strong>:</p>
+<ul>
+<li><strong>LLM (Qwen2.5)</strong>: The extracted information from all chunks is combined and processed to generate a comprehensive Markdown report tailored to the meeting type.</li>
+<li><strong>Output</strong>: A detailed Markdown report.</li>
+</ul>
+</li>
+<li>
+<p><strong>Output Layer</strong>:</p>
+<ul>
+<li><strong>Markdown File</strong>: The report is saved as a Markdown file (<code>report.md</code>).</li>
+<li><strong>PDF Conversion</strong>: The Markdown file is converted to a PDF (<code>report.pdf</code>).</li>
+<li><strong>UI Output</strong>: The report is displayed in the Gradio interface, with options to download the Markdown and PDF files.</li>
+</ul>
+</li>
+</ol>
+<h3 id="why-choose-whisper-baseen-for-transcription">Why Choose Whisper <code>base.en</code> for Transcription?</h3>
+<p>The choice of Whisper <code>base.en</code> for transcription was informed by the analysis in the obtained graph. The graph compares various models (BASE.EN WHISPER, WAV2VEC2, LARGE-V3-TURBO [WHISPER], VOSK-MODEL-EN-US-0.22-LGRAPH, VOSK-MODEL-EN-US-0.22) on Word Error Rate (WER) and Character Error Rate (CER). BASE.EN WHISPER achieved a WER of 34.06 and a CER of 15.24, which are competitive compared to larger models like LARGE-V3-TURBO (WER: 64.86, CER: 34.45) while requiring significantly fewer computational resources. Since the project prioritizes efficiency on varied hardware (including CPU setups), <code>base.en</code> provides a balanced trade-off between accuracy and resource usage, making it ideal for this application.</p>
+<p><img src="./model_selection_voice.png" alt="model_selection_voice"></p>
+<h3 id="why-choose-qwen25-for-language-processing">Why Choose Qwen2.5 for Language Processing?</h3>
+<p>Qwen2.5, developed by Alibaba Cloud, was selected as the language model for this project due to its strong performance in natural language understanding and generation, particularly for structured tasks like information extraction and report generation. The 7B model (or 3B for CPU) offers a good balance of capability and efficiency, making it suitable for processing large meeting transcripts while maintaining high-quality output. Qwen2.5 excels in handling long contexts (up to 8192 tokens in this setup) and following complex prompts, which is critical for extracting nuanced information like problem statements and solution designs. Additionally, its open-source availability via Ollama ensures accessibility and ease of deployment, aligning with the project's goal of creating a scalable and maintainable solution.</p>
+<h2 id="setup-and-installation">Setup and Installation</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li><strong>Operating System</strong>: Windows, macOS, or Linux.</li>
+<li><strong>Hardware</strong>:
+<ul>
+<li>GPU (optional, recommended for faster processing with Whisper and Qwen2.5).</li>
+<li>Minimum 8GB RAM (16GB recommended for GPU usage).</li>
+</ul>
+</li>
+<li><strong>Software</strong>:
+<ul>
+<li>Python 3.8 or higher.</li>
+<li>FFmpeg (for audio/video processing).</li>
+<li>Git (for cloning repositories, if needed).</li>
+</ul>
+</li>
+</ul>
+<h3 id="step-by-step-installation">Step-by-Step Installation</h3>
+<ol>
+<li>
+<p><strong>Install FFmpeg</strong>:</p>
+<ul>
+<li><strong>Windows</strong>: Download from the official FFmpeg website, extract, and add to PATH.</li>
+<li><strong>macOS</strong>: <code>brew install ffmpeg</code></li>
+<li><strong>Linux</strong>: <code>sudo apt-get install ffmpeg</code></li>
+<li>Verify: <code>ffmpeg -version</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Install Python Dependencies</strong>:
+Create a virtual environment (optional but recommended):</p>
+<pre class="hljs"><code><div>python -m venv venv
+<span class="hljs-built_in">source</span> venv/bin/activate  <span class="hljs-comment"># On Windows: venv\Scripts\activate</span>
+</div></code></pre>
+<p>Install required packages:</p>
+<pre class="hljs"><code><div>pip install ffmpeg-python openai-whisper torch ollama gradio mdpdf
+</div></code></pre>
+</li>
+<li>
+<p><strong>Install and Configure Ollama</strong>:</p>
+<ul>
+<li>Download and install Ollama from the official website (https://ollama.ai).</li>
+<li>Pull the Qwen2.5 model:
+<ul>
+<li>For GPU setups (7B model): <code>ollama pull qwen2.5</code></li>
+<li>For CPU setups (3B model): <code>ollama pull qwen2.5:3b</code></li>
+</ul>
+</li>
+<li>Verify: <code>ollama list</code> (should show <code>qwen2.5</code> or <code>qwen2.5:3b</code>).</li>
+</ul>
+</li>
+<li>
+<p><strong>Verify Whisper Installation</strong>:
+Whisper is installed via <code>openai-whisper</code>. The <code>base.en</code> model will be automatically downloaded on first use.</p>
+</li>
+</ol>
+<h3 id="project-setup">Project Setup</h3>
+<ol>
+<li>Clone or create the project directory:<pre class="hljs"><code><div>mkdir intelligent-assistant
+<span class="hljs-built_in">cd</span> intelligent-assistant
+</div></code></pre>
+</li>
+<li>Save the provided code as <code>app.py</code> in the project directory.</li>
+<li>Run the application:<pre class="hljs"><code><div>python app.py
+</div></code></pre>
+This will launch the Gradio interface, accessible via a browser URL (e.g., <code>http://127.0.0.1:7860</code>).</li>
+</ol>
+<h2 id="code-explanation">Code Explanation</h2>
+<p>The code is structured to handle the entire workflow from file input to report generation. Below is a detailed breakdown of the key components and functions:</p>
+<h3 id="1-imports-and-setup">1. <strong>Imports and Setup</strong></h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> gradio <span class="hljs-keyword">as</span> gr
+<span class="hljs-keyword">import</span> whisper
+<span class="hljs-keyword">import</span> ollama
+<span class="hljs-keyword">import</span> os
+<span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> re
+<span class="hljs-keyword">import</span> subprocess
+<span class="hljs-keyword">from</span> pathlib <span class="hljs-keyword">import</span> Path
+<span class="hljs-keyword">import</span> shutil
+</div></code></pre>
+<ul>
+<li><strong>Purpose</strong>: Import necessary libraries for UI (Gradio), transcription (Whisper), language processing (Ollama), and file handling.</li>
+<li><strong>Whisper Model Loading</strong>:<pre class="hljs"><code><div>device = <span class="hljs-string">"cuda"</span> <span class="hljs-keyword">if</span> torch.cuda.is_available() <span class="hljs-keyword">else</span> <span class="hljs-string">"cpu"</span>
+whisper_model = whisper.load_model(<span class="hljs-string">"base.en"</span>, device=device)
+</div></code></pre>
+<ul>
+<li>Detects if a GPU is available and loads the Whisper <code>base.en</code> model accordingly.</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-transcription-function-transcribefile">2. <strong>Transcription Function (<code>transcribe_file</code>)</strong></h3>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">transcribe_file</span><span class="hljs-params">(file, progress=gr.Progress<span class="hljs-params">()</span>)</span>:</span>
+    progress(<span class="hljs-number">0</span>, desc=<span class="hljs-string">"Starting transcription..."</span>)
+    <span class="hljs-keyword">try</span>:
+        <span class="hljs-keyword">if</span> file.name.endswith(<span class="hljs-string">'.txt'</span>):
+            <span class="hljs-keyword">with</span> open(file.name, <span class="hljs-string">'r'</span>, encoding=<span class="hljs-string">'utf-8'</span>) <span class="hljs-keyword">as</span> f:
+                transcript = f.read()
+        <span class="hljs-keyword">elif</span> file.name.endswith((<span class="hljs-string">'.mp4'</span>, <span class="hljs-string">'.webm'</span>, <span class="hljs-string">'.mp3'</span>)):
+            progress(<span class="hljs-number">0.2</span>, desc=<span class="hljs-string">"Transcribing audio/video..."</span>)
+            result = whisper_model.transcribe(file.name, fp16=(device == <span class="hljs-string">"cuda"</span>))
+            transcript = result[<span class="hljs-string">"text"</span>]
+        <span class="hljs-keyword">else</span>:
+            <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">"Unsupported file type..."</span>)
+        transcript = re.sub(<span class="hljs-string">r'\s+'</span>, <span class="hljs-string">' '</span>, transcript).strip()
+        filler_words = <span class="hljs-string">r'\b(um|uh|like|you know|so|basically)\b'</span>
+        transcript = re.sub(filler_words, <span class="hljs-string">''</span>, transcript, flags=re.IGNORECASE)
+        transcript = re.sub(<span class="hljs-string">r'\s+'</span>, <span class="hljs-string">' '</span>, transcript).strip()
+        <span class="hljs-keyword">return</span> transcript
+    <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:
+        <span class="hljs-keyword">raise</span> Exception(<span class="hljs-string">f"Transcription error: <span class="hljs-subst">{str(e)}</span>"</span>)
+</div></code></pre>
+<ul>
+<li><strong>Purpose</strong>: Transcribes audio/video files or reads text files.</li>
+<li><strong>Details</strong>:
+<ul>
+<li>Supports <code>.txt</code>, <code>.mp4</code>, <code>.webm</code>, and <code>.mp3</code> files.</li>
+<li>Uses Whisper for audio/video transcription with FP16 precision on GPU.</li>
+<li>Cleans the transcript by removing filler words (e.g., &quot;um&quot;, &quot;uh&quot;) and normalizing whitespace.</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-chunking-function-chunktranscript">3. <strong>Chunking Function (<code>chunk_transcript</code>)</strong></h3>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">chunk_transcript</span><span class="hljs-params">(transcript, chunk_size=<span class="hljs-number">4000</span>, overlap=<span class="hljs-number">1000</span>, progress=gr.Progress<span class="hljs-params">()</span>)</span>:</span>
+    words = transcript.split()
+    chunks = []
+    start = <span class="hljs-number">0</span>
+    total_chunks = max(<span class="hljs-number">1</span>, (len(words) // (chunk_size - overlap)) + <span class="hljs-number">1</span>)
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(total_chunks):
+        end = min(start + chunk_size, len(words))
+        chunk = <span class="hljs-string">' '</span>.join(words[start:end])
+        <span class="hljs-keyword">if</span> chunk.strip():
+            chunks.append(chunk)
+        start = end - overlap <span class="hljs-keyword">if</span> end &lt; len(words) <span class="hljs-keyword">else</span> len(words)
+        progress((i + <span class="hljs-number">1</span>) / total_chunks, desc=<span class="hljs-string">f"Chunk <span class="hljs-subst">{i + <span class="hljs-number">1</span>}</span> of <span class="hljs-subst">{total_chunks}</span> created."</span>)
+    <span class="hljs-keyword">return</span> chunks
+</div></code></pre>
+<ul>
+<li><strong>Purpose</strong>: Splits the transcript into chunks to fit within the context limits of Qwen2.5 (8192 tokens).</li>
+<li><strong>Details</strong>:
+<ul>
+<li>Chunk size is set to 4000 words with a 1000-word overlap to ensure continuity.</li>
+<li>Progress tracking is integrated for user feedback.</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-prompts-for-llm-processing">4. <strong>Prompts for LLM Processing</strong></h3>
+<ul>
+<li><strong>Classification Prompt</strong>:
+<ul>
+<li>Determines if the meeting is technical or non-technical based on the first chunk.</li>
+</ul>
+</li>
+<li><strong>Technical Extraction Prompt</strong>:
+<ul>
+<li>Extracts detailed information for technical meetings, including summaries, key points, action items, problem statements, solution components, technology suggestions, and challenges.</li>
+</ul>
+</li>
+<li><strong>Non-Technical Extraction Prompt</strong>:
+<ul>
+<li>Extracts summaries, key points, and action items for non-technical meetings.</li>
+</ul>
+</li>
+<li><strong>Report Generation Prompts</strong>:
+<ul>
+<li>Separate prompts for technical and non-technical meetings to generate structured Markdown reports.</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-llm-processing-function-processwithollama">5. <strong>LLM Processing Function (<code>process_with_ollama</code>)</strong></h3>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">process_with_ollama</span><span class="hljs-params">(prompt, num_predict=<span class="hljs-number">8192</span>, num_ctx=<span class="hljs-number">8192</span>, progress=gr.Progress<span class="hljs-params">()</span>)</span>:</span>
+    <span class="hljs-keyword">try</span>:
+        response = ollama.generate(
+            model=<span class="hljs-string">"qwen2.5"</span>,
+            prompt=prompt,
+            options={<span class="hljs-string">"num_predict"</span>: num_predict, <span class="hljs-string">"num_ctx"</span>: num_ctx}
+        )
+        <span class="hljs-keyword">return</span> response.get(<span class="hljs-string">'response'</span>, <span class="hljs-string">''</span>).strip()
+    <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:
+        <span class="hljs-keyword">raise</span> Exception(<span class="hljs-string">f"Ollama processing error: <span class="hljs-subst">{str(e)}</span>"</span>)
+</div></code></pre>
+<ul>
+<li><strong>Purpose</strong>: Interfaces with the Qwen2.5 model via Ollama for classification, extraction, and report generation.</li>
+<li><strong>Details</strong>:
+<ul>
+<li>Configures the maximum tokens to predict (<code>num_predict</code>) and context size (<code>num_ctx</code>).</li>
+<li>Handles errors gracefully with detailed feedback.</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-report-generation-function-generatereport">6. <strong>Report Generation Function (<code>generate_report</code>)</strong></h3>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">generate_report</span><span class="hljs-params">(file, progress=gr.Progress<span class="hljs-params">()</span>)</span>:</span>
+    transcript = transcribe_file(file, progress)
+    chunks = chunk_transcript(transcript, progress=progress)
+    classification = process_with_ollama(classification_prompt.format(chunk=chunks[<span class="hljs-number">0</span>]), ...)
+    meeting_type = classification.strip().lower()
+    extracted_chunks = []
+    <span class="hljs-keyword">for</span> chunk <span class="hljs-keyword">in</span> chunks:
+        <span class="hljs-keyword">if</span> meeting_type == <span class="hljs-string">"technical"</span>:
+            extracted_chunk = process_with_ollama(technical_extract_prompt.format(chunk=chunk), ...)
+        <span class="hljs-keyword">else</span>:
+            extracted_chunk = process_with_ollama(non_technical_extract_prompt.format(chunk=chunk), ...)
+        extracted_chunks.append(extracted_chunk)
+    combined_chunks = combine_chunks(extracted_chunks)
+    <span class="hljs-keyword">if</span> meeting_type == <span class="hljs-string">"technical"</span>:
+        report_md = process_with_ollama(technical_report_prompt.format(combined_chunks=combined_chunks), ...)
+    <span class="hljs-keyword">else</span>:
+        report_md = process_with_ollama(non_technical_report_prompt.format(combined_chunks=combined_chunks), ...)
+    md_path = save_markdown_report(report_md, progress)
+    pdf_path = convert_md_to_pdf(md_path, progress)
+    <span class="hljs-keyword">return</span> report_md, md_path, pdf_path
+</div></code></pre>
+<ul>
+<li><strong>Purpose</strong>: Orchestrates the entire workflow from transcription to report generation.</li>
+<li><strong>Details</strong>:
+<ul>
+<li>Handles errors at each step and provides user feedback via progress updates.</li>
+<li>Supports both Markdown and PDF output formats.</li>
+</ul>
+</li>
+</ul>
+<h3 id="7-gradio-interface">7. <strong>Gradio Interface</strong></h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span> gr.Blocks(title=<span class="hljs-string">"Intelligent Assistant for Solution Design"</span>) <span class="hljs-keyword">as</span> app:
+    gr.Markdown(<span class="hljs-string">"# Intelligent Assistant for Solution Design"</span>)
+    file_input = gr.File(label=<span class="hljs-string">"Upload Video, Audio, or Transcript"</span>, file_types=[<span class="hljs-string">".mp4"</span>, <span class="hljs-string">".webm"</span>, <span class="hljs-string">".mp3"</span>, <span class="hljs-string">".txt"</span>])
+    generate_btn = gr.Button(<span class="hljs-string">"Generate Report"</span>, variant=<span class="hljs-string">"primary"</span>)
+    report_output = gr.Markdown(label=<span class="hljs-string">"Generated Report"</span>)
+    md_output = gr.File(label=<span class="hljs-string">"Download Report as Markdown (.md)"</span>)
+    pdf_output = gr.File(label=<span class="hljs-string">"Download Report as PDF (.pdf)"</span>)
+    generate_btn.click(fn=generate_report, inputs=file_input, outputs=[report_output, md_output, pdf_output])
+app.launch(share=<span class="hljs-literal">True</span>)
+</div></code></pre>
+<ul>
+<li><strong>Purpose</strong>: Provides a user-friendly interface for uploading files and viewing/downloading reports.</li>
+<li><strong>Details</strong>:
+<ul>
+<li>Displays warnings if <code>mdpdf</code> is not installed.</li>
+<li>Includes progress feedback for long-running tasks.</li>
+</ul>
+</li>
+</ul>
+<h2 id="solution-design">Solution Design</h2>
+<h3 id="transcription-and-preprocessing">Transcription and Preprocessing</h3>
+<ul>
+<li><strong>Whisper <code>base.en</code></strong>: Chosen for its balance of accuracy and efficiency, as discussed earlier.</li>
+<li><strong>Text Cleaning</strong>: Removes filler words and normalizes whitespace to improve the quality of the transcript for LLM processing.</li>
+</ul>
+<h3 id="meeting-classification">Meeting Classification</h3>
+<ul>
+<li>Uses a classification prompt to determine the meeting type, ensuring the appropriate extraction and reporting logic is applied.</li>
+</ul>
+<h3 id="information-extraction">Information Extraction</h3>
+<ul>
+<li><strong>Technical Meetings</strong>:
+<ul>
+<li>Extracts detailed information, including problem statements and solution components, to support solution design.</li>
+<li>Suggests technologies based on the extracted context (e.g., OpenCV for image processing).</li>
+</ul>
+</li>
+<li><strong>Non-Technical Meetings</strong>:
+<ul>
+<li>Focuses on summaries, key points, and action items, as technical details are not relevant.</li>
+</ul>
+</li>
+</ul>
+<h3 id="report-generation">Report Generation</h3>
+<ul>
+<li>Generates a structured Markdown report tailored to the meeting type.</li>
+<li>For technical meetings, includes detailed sections on problem statements, solution designs, and technology stacks.</li>
+<li>Ensures reports are professional and comprehensive, spanning 3-4 pages for technical meetings.</li>
+</ul>
+<h2 id="technology-stack">Technology Stack</h2>
+<ul>
+<li><strong>Python</strong>: Core programming language for the project due to its extensive ecosystem and support for AI/ML libraries.</li>
+<li><strong>Whisper (<code>base.en</code>)</strong>: For audio/video transcription, chosen for its efficiency and accuracy.</li>
+<li><strong>Ollama with Qwen2.5</strong>: For language processing, selected for its strong NLP capabilities and open-source availability.</li>
+<li><strong>Gradio</strong>: For building the user interface, offering a simple and interactive web-based solution.</li>
+<li><strong>FFmpeg</strong>: For handling audio/video file processing, required by Whisper.</li>
+<li><strong>mdpdf</strong>: For converting Markdown reports to PDF, ensuring professional output (optional).</li>
+</ul>
+<h2 id="challenges-and-limitations">Challenges and Limitations</h2>
+<ul>
+<li><strong>Hardware Constraints</strong>:
+<ul>
+<li>Users without GPUs may experience slower processing times, particularly for transcription and LLM inference.</li>
+<li>The 3B Qwen2.5 model is used for CPU setups, which may have slightly lower accuracy compared to the 7B model.</li>
+</ul>
+</li>
+<li><strong>Transcript Quality</strong>:
+<ul>
+<li>Noisy audio or unclear speech can lead to transcription errors, impacting the quality of the extracted information.</li>
+<li>Mitigation: Encourage users to upload high-quality recordings or pre-transcribed text.</li>
+</ul>
+</li>
+<li><strong>Context Limitations</strong>:
+<ul>
+<li>The chunking approach may miss cross-chunk context, potentially leading to fragmented problem statements or solutions.</li>
+<li>Mitigation: The 1000-word overlap helps retain some continuity between chunks.</li>
+</ul>
+</li>
+<li><strong>PDF Generation</strong>:
+<ul>
+<li>Requires <code>mdpdf</code> to be installed, which may not be available on all systems.</li>
+<li>Mitigation: Provide a warning in the UI and allow Markdown downloads as a fallback.</li>
+</ul>
+</li>
+</ul>
+<h2 id="future-enhancements">Future Enhancements</h2>
+<ul>
+<li><strong>Improved Transcription</strong>:
+<ul>
+<li>Explore larger Whisper models (e.g., <code>medium.en</code>) for better accuracy if hardware constraints are alleviated.</li>
+</ul>
+</li>
+<li><strong>Advanced NLP</strong>:
+<ul>
+<li>Fine-tune Qwen2.5 on meeting-specific datasets to improve extraction accuracy.</li>
+<li>Incorporate multi-modal analysis (e.g., combining video visuals with audio) for richer insights.</li>
+</ul>
+</li>
+<li><strong>UI Enhancements</strong>:
+<ul>
+<li>Add real-time progress updates and error notifications.</li>
+<li>Allow users to edit extracted information before report generation.</li>
+</ul>
+</li>
+<li><strong>Scalability</strong>:
+<ul>
+<li>Deploy the solution on a cloud platform (e.g., AWS) for better scalability and accessibility.</li>
+<li>Implement batch processing for multiple files.</li>
+</ul>
+</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>The Intelligent Assistant for Solution Design addresses the challenge of post-meeting analysis by automating the extraction of key insights and generating detailed reports. By leveraging Whisper for transcription, Qwen2.5 for language processing, and Gradio for the user interface, the solution provides a robust and user-friendly tool for business professionals. While there are challenges related to hardware constraints and transcript quality, the system offers a solid foundation for further enhancements and scalability.</p>
+
+</body>
+</html>
